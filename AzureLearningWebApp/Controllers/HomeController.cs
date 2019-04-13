@@ -10,6 +10,17 @@ namespace AzureLearningWebApp.Controllers
     {
         public ActionResult Index()
         {
+            AdventureWorksEntities db = new AdventureWorksEntities();
+            List<Product> products = db.Products.ToList();
+            int i = 0;
+            foreach (Product product in products)
+            {
+                if (i >= 5) break;
+
+                Response.Write("product id:" + product.ProductID + ", product name:" + product.Name + "<br>");
+                i++;
+            }
+
             return View();
         }
 
