@@ -1,5 +1,7 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -11,6 +13,8 @@ namespace AzureLearningWebApp
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        ILog Logger;
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -18,6 +22,18 @@ namespace AzureLearningWebApp
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            log4net.Config.XmlConfigurator.Configure(new FileInfo(Server.MapPath("~/Web.config")));
+        }
+
+        protected void Application_Error(Object sender, EventArgs e)
+        {
+            Logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+            Exception ex = Server.GetLastError();
+
+            Logger.Error(ex.ToString(), ex);
+
         }
     }
 }
