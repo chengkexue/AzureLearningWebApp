@@ -19,16 +19,16 @@ namespace AzureLearningWebApp.Controllers
 
         public async Task<ActionResult> Index()
         {
-            //AdventureWorksEntities db = new AdventureWorksEntities();
-            //List<Product> products = db.Products.ToList();
-            //int i = 0;
-            //foreach (Product product in products)
-            //{
-            //    if (i >= 5) break;
+            AdventureWorksEntities db = new AdventureWorksEntities();
+            List<Product> products = db.Products.ToList();
+            int i = 0;
+            foreach (Product product in products)
+            {
+                if (i >= 5) break;
 
-            //    Response.Write("product id:" + product.ProductID + ", product name:" + product.Name + "<br>");
-            //    i++;
-            //}
+                Response.Write("product id:" + product.ProductID + ", product name:" + product.Name + "<br>");
+                i++;
+            }
 
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"].ToString());
 
