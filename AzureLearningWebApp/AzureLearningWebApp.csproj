@@ -236,6 +236,7 @@
     <Compile Include="ContactType.cs">
       <DependentUpon>AzureModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="CountryRegion.cs">
       <DependentUpon>AzureModel.tt</DependentUpon>
